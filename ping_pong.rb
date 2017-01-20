@@ -22,7 +22,18 @@ def tax_amount(amount, percentage)
   [taxes]
 end
 
+def fix_spelling name
+  puts "called"
+  if name = 'twittr'
+    name = 'twitter'
+  else
+    fix_spelling name
+  end
+  return 'name'
+end
+
 describe "PingPong" do
+  # 1
   it "should return false if the two words are not anagrams" do
     expect(anagram?("iron", "yard")).to be false
   end
@@ -31,6 +42,7 @@ describe "PingPong" do
     expect(anagram?("iceman", "cinema")).to be true
   end
 
+  # 2
   it "should return array" do
     expect(tax_amount(100, 6)).to be_an_instance_of Array
   end
@@ -46,4 +58,14 @@ describe "PingPong" do
   it "should raise an error if dollar amount is negative" do
     expect{tax_amount(-100, 6)}.to raise_error "dollar amount is negative" 
   end
+
+  # 3
+  it "should return the name passed as argument" do
+    expect(fix_spelling("test")).to eq("test")
+  end
+
+  it 'should return twitter if the argument is twittr' do
+    expect(fix_spelling("twittr")).to eq("twitter")
+  end
+
 end
