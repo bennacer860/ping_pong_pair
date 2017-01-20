@@ -32,10 +32,21 @@ end
 def convert_volume measure1, measure2, measure3
   raise "negative value argument" if (measure1 < 0 || measure2 < 0 || measure3 < 0)
   raise "0 value argument" if (measure1 == 0 || measure2 == 0 || measure3 == 0)
-  (measure1*0.01) * (measure2*0.01) * (measure3*0.01) * 1000 
+  (measure1*0.01) * (measure2*0.01) * (measure3*0.01) * 1000
 
 end
 
+def fizzbuzz number
+  if number % 5 == 0 && number % 3 == 0
+    "fizzbuzz"
+  elsif number % 5 == 0
+    "buzz"
+  elsif number % 3 == 0
+    "fizz"
+  else
+    "#{number}"
+  end
+end
 
 describe "PingPong" do
   # 1
