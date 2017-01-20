@@ -88,4 +88,26 @@ describe "PingPong" do
     expect{convert_volume(100, -1, 100)}.to raise_error "negative value argument"
     expect{convert_volume(100, 100, -1)}.to raise_error "negative value argument"
   end
+
+  #5
+  it 'should return fizz if multiple of 3 and not 5' do
+    expect(fizzbuzz(3)).to eq("fizz")
+    expect(fizzbuzz(9)).to eq("fizz")
+
+  end
+
+  it 'should return Buzz if multiple of 5 and not 3' do
+    expect(fizzbuzz(5)).to eq("buzz")
+    expect(fizzbuzz(10)).to eq("buzz")
+  end
+
+  it 'should return fizzbuzz if multiple of 5 and 3' do
+    expect(fizzbuzz(15)).to eq("fizzbuzz")
+    expect(fizzbuzz(30)).to eq("fizzbuzz")
+  end
+
+  it 'should return the number if it is not a multiple of 5 nor 3' do
+    expect(fizzbuzz(2)).to eq("2")
+    expect(fizzbuzz(7)).to eq("7")
+  end
 end
