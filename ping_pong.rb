@@ -23,13 +23,10 @@ def tax_amount(amount, percentage)
 end
 
 def fix_spelling name
-  puts "called"
-  if name = 'twittr'
+  if name == 'twittr'
     name = 'twitter'
-  else
-    fix_spelling name
   end
-  return 'name'
+  return name
 end
 
 describe "PingPong" do
@@ -56,7 +53,7 @@ describe "PingPong" do
   end
 
   it "should raise an error if dollar amount is negative" do
-    expect{tax_amount(-100, 6)}.to raise_error "dollar amount is negative" 
+    expect{tax_amount(-100, 6)}.to raise_error "dollar amount is negative"
   end
 
   # 3
@@ -68,4 +65,19 @@ describe "PingPong" do
     expect(fix_spelling("twittr")).to eq("twitter")
   end
 
+  it 'should return correct liter value' do
+    expect(convert_volume(100, 100, 100)).to eq(1000)
+  end
+
+  it 'should throw error if 0 value argument' do
+    expect(convert_volume(0, 100, 100)).to raise_error "0 value argument"
+    expect(convert_volume(100, 0, 100)).to raise_error "0 value argument"
+    expect(convert_volume(100, 100, 0)).to raise_error "0 value argument"
+  end
+
+  it 'should throw error if negative value argument' do
+    expect(convert_volume(-1, 100, 100)).to raise_error "negative value argument"
+    expect(convert_volume(100, -1, 100)).to raise_error "negative value argument"
+    expect(convert_volume(100, 100, -1)).to raise_error "negative value argument"
+  end
 end
