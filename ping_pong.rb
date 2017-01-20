@@ -15,6 +15,13 @@ def anagram?(word_one, word_two)
   end
 end
 
+def tax_amount(amount, percentage)
+  raise "percentage is above 100" if percentage > 100
+  raise "dollar amount is negative" if amount < 0
+  taxes = amount * (percentage.to_f/100) * 100
+  [taxes]
+end
+
 describe "PingPong" do
   it "should return false if the two words are not anagrams" do
     expect(anagram?("iron", "yard")).to be false
@@ -33,10 +40,10 @@ describe "PingPong" do
   end
 
   it "should raise an error if percentage is above 100" do
-    expect(tax_amount(100, 101)).to raise_error
+    expect{tax_amount(100, 101)}.to raise_error "percentage is above 100"
   end
 
   it "should raise an error if dollar amount is negative" do
-    expect(tax_amount(-100, 6)).to raise_error
+    expect{tax_amount(-100, 6)}.to raise_error "dollar amount is negative" 
   end
 end
