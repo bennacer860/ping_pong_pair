@@ -29,6 +29,14 @@ def fix_spelling name
   return name
 end
 
+def convert_volume measure1, measure2, measure3
+  raise "negative value argument" if (measure1 < 0 || measure2 < 0 || measure3 < 0)
+  raise "0 value argument" if (measure1 == 0 || measure2 == 0 || measure3 == 0)
+  (measure1*0.01) * (measure2*0.01) * (measure3*0.01) * 1000 
+
+end
+
+
 describe "PingPong" do
   # 1
   it "should return false if the two words are not anagrams" do
@@ -70,14 +78,14 @@ describe "PingPong" do
   end
 
   it 'should throw error if 0 value argument' do
-    expect(convert_volume(0, 100, 100)).to raise_error "0 value argument"
-    expect(convert_volume(100, 0, 100)).to raise_error "0 value argument"
-    expect(convert_volume(100, 100, 0)).to raise_error "0 value argument"
+    expect{convert_volume(0, 100, 100)}.to raise_error "0 value argument"
+    expect{convert_volume(100, 0, 100)}.to raise_error "0 value argument"
+    expect{convert_volume(100, 100, 0)}.to raise_error "0 value argument"
   end
 
   it 'should throw error if negative value argument' do
-    expect(convert_volume(-1, 100, 100)).to raise_error "negative value argument"
-    expect(convert_volume(100, -1, 100)).to raise_error "negative value argument"
-    expect(convert_volume(100, 100, -1)).to raise_error "negative value argument"
+    expect{convert_volume(-1, 100, 100)}.to raise_error "negative value argument"
+    expect{convert_volume(100, -1, 100)}.to raise_error "negative value argument"
+    expect{convert_volume(100, 100, -1)}.to raise_error "negative value argument"
   end
 end
